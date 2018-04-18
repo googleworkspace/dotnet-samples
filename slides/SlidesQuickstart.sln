@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidesQuickstart", "SlidesQuickstart\SlidesQuickstart.csproj", "{20C2377D-BC3B-4012-8842-FC85ED2DE29A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20C2377D-BC3B-4012-8842-FC85ED2DE29A}.Debug|x86.ActiveCfg = Debug|x86
+		{20C2377D-BC3B-4012-8842-FC85ED2DE29A}.Debug|x86.Build.0 = Debug|x86
+		{20C2377D-BC3B-4012-8842-FC85ED2DE29A}.Release|x86.ActiveCfg = Release|x86
+		{20C2377D-BC3B-4012-8842-FC85ED2DE29A}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
