@@ -32,7 +32,6 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 packages/
-*.csproj
 bin/
 obj/
 AssemblyInfo.cs
