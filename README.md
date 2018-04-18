@@ -1,4 +1,4 @@
-# G Suite .NET Samples
+# G Suite .NET Samples [![Build Status](https://travis-ci.org/gsuitedevs/dotnet-samples.svg?branch=master)](https://travis-ci.org/gsuitedevs/dotnet-samples)
 
 .NET samples for [G Suite API](https://developers.google.com/gsuite/) docs.
 
