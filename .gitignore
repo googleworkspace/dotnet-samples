@@ -34,4 +34,3 @@ msbuild.wrn
 packages/
 bin/
 obj/
-AssemblyInfo.cs
