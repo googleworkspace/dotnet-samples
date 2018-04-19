@@ -2,6 +2,6 @@ language: csharp
 mono:
   - latest
 install:
-  - cd slides && nuget install Google.Apis.Slides.v1 && cd ..
+  - cd slides && nuget install && cd ..
 script:
   - msbuild slides/SlidesQuickstart.sln
