@@ -1,0 +1,88 @@
+﻿// Copyright 2018 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// [START vault_quickstart]
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Vault.v1;
+using Google.Apis.Vault.v1.Data;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace VaultQuickstart
+{
+    class Program
+    {
+        // If modifying these scopes, delete your previously saved credentials
+        // at ~/.credentials/vault.googleapis.com-dotnet-quickstart.json
+        static string[] Scopes = { VaultService.Scope.EdiscoveryReadonly };
+        static string ApplicationName = "Google Vault API .NET Quickstart";
+
+        static void Main(string[] args)
+        {
+            UserCredential credential;
+
+            using (var stream =
+                new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            {
+                string credPath = System.Environment.GetFolderPath(
+                    System.Environment.SpecialFolder.Personal);
+                credPath = Path.Combine(credPath, ".credentials/vault.googleapis.com-dotnet-quickstart.json");
+
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    Scopes,
+                    "user",
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true)).Result;
+                Console.WriteLine("Credential file saved to: " + credPath);
+            }
+
+            // Create Vault API service.
+            var service = new VaultService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+            // Define request parameters.
+            MattersResource.ListRequest request = service.Matters.List();
+            request.PageSize = 10;
+
+            // List matters.
+            ListMattersResponse response = request.Execute();
+            Console.WriteLine("Matters:");
+            if (response.Matters != null && response.Matters.Count > 0)
+            {
+                foreach (var matter in response.Matters)
+                {
+                    Console.WriteLine("{0} ({1})", matter.Name, matter.MatterId);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No matters found.");
+            }
+            Console.Read();
+
+        }
+    }
+}
+// [END vault_quickstart]

@@ -11,6 +11,7 @@
 - [Sheets Quickstart](https://developers.google.com/sheets/api/quickstart/dotnet)
 - [Slides Quickstart](https://developers.google.com/slides/quickstart/dotnet)
 - [Tasks Quickstart](https://developers.google.com/tasks/quickstart/dotnet)
+- [Vault Quickstart](https://developers.google.com/vault/quickstart/dotnet)
 
 ## Setting up Visual Studio for a Command Line Project
 
