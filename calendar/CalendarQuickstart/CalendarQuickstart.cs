@@ -40,12 +40,9 @@ namespace CalendarQuickstart
             UserCredential credential;
 
             using (var stream =
-                new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
             {
-                string credPath = System.Environment.GetFolderPath(
-                    System.Environment.SpecialFolder.Personal);
-                credPath = Path.Combine(credPath, ".credentials/calendar-dotnet-quickstart.json");
-
+                string credPath = "token.json";
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     Scopes,
