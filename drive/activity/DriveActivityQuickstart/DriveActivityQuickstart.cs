@@ -28,8 +28,8 @@ namespace DriveActivityQuickstart
     class Program
     {
         // If modifying these scopes, delete your previously saved credentials
-		// at ~/.credentials/drive-DriveActivityQuickstart-quickstart.json
-		static string[] Scopes = { AppsactivityService.Scope.Activity };
+	// in token.json
+	static string[] Scopes = { AppsactivityService.Scope.Activity };
         static string ApplicationName = "Drive API .NET Quickstart";
 
         static void Main(string[] args)
@@ -49,7 +49,7 @@ namespace DriveActivityQuickstart
                 Console.WriteLine("Credential file saved to: " + credPath);
             }
 
-			// Create Google Drive Activity API service.
+	    // Create Google Drive Activity API service.
             var service = new AppsactivityService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
@@ -63,7 +63,7 @@ namespace DriveActivityQuickstart
             listRequest.PageSize = 10;
 
             // List activities.
-			IList<Google.Apis.Appsactivity.v1.Data.Activity> activities = listRequest.Execute().Activities;
+	    IList<Google.Apis.Appsactivity.v1.Data.Activity> activities = listRequest.Execute().Activities;
             Console.WriteLine("Activities:");
             if (activities != null && activities.Count > 0)
             {
