@@ -12,7 +12,7 @@
  // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  // See the License for the specific language governing permissions and
  // limitations under the License.
-// [START apps_script_execute]
+// [START apps_script_api_execute]
 // Create Google Apps Script API service.
 string scriptId = "ENTER_YOUR_SCRIPT_ID_HERE";
 var service = new ScriptService(new BaseClientService.Initializer()
@@ -94,4 +94,4 @@ catch (Google.GoogleApiException e)
     Console.WriteLine("Error calling API:\n{0}", e);
 }
 Console.Read();
-// [END apps_script_execute]
+// [END apps_script_api_execute]
