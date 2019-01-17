@@ -31,7 +31,7 @@ namespace DriveActivityQuickstart
         // If modifying these scopes, delete your previously saved credentials
         // in token.json
         static string[] Scopes = { DriveActivityService.Scope.DriveActivityReadonly };
-        static string ApplicationName = "Drive API .NET Quickstart";
+        static string ApplicationName = "Drive Activity v2 API .NET Quickstart";
 
         static void Main(string[] args)
         {
