@@ -6,9 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis" Version="1.39.0" />
-    <PackageReference Include="Google.Apis.Auth" Version="1.39.0" />
     <PackageReference Include="Google.Apis.Slides.v1" Version="1.39.0.1576" />
   </ItemGroup>
-
+  
 </Project>

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.Vault.v1" Version="1.39.0.1561" />
+    <PackageReference Include="Google.Apis.DriveActivity.v2" Version="1.39.0.1579" />
   </ItemGroup>
 
 </Project>
