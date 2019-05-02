@@ -1,7 +1,7 @@
+dist: bionic
 language: csharp
-mono:
-  - latest
+mono: none
+dotnet: 2.2.105
 install:
-  - cd slides && nuget install && cd ..
 script:
-  - msbuild slides/SlidesQuickstart.sln
+  - dotnet build slides/SlidesQuickstart.sln
