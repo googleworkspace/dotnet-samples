@@ -145,8 +145,8 @@ namespace DriveActivityQuickstart
             if (target.DriveItem != null) {
                 return "driveItem:\"" + target.DriveItem.Title + "\"";
             }
-            if (target.TeamDrive != null) {
-                return "teamDrive:\"" + target.TeamDrive.Title + "\"";
+            if (target.Drive != null) {
+                return "drive:\"" + target.Drive.Title + "\"";
             }
             if (target.FileComment != null) {
                 DriveItem parent = target.FileComment.Parent;
