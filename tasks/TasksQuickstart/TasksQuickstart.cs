@@ -32,6 +32,8 @@ namespace TasksQuickstart
     {
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/tasks-dotnet-quickstart.json
+        // In case of Visual Studio, the credentials should be located inside the project directory
+        // at <Your project folder>\bin\Debug\token.json)
         static string[] Scopes = { TasksService.Scope.TasksReadonly };
         static string ApplicationName = "Google Tasks API .NET Quickstart";
 
