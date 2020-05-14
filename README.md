@@ -4,8 +4,8 @@
 
 ## APIs
 
-- [Classroom Quickstart](https://developers.google.com/drive/v3/quickstart/dotnet)
-- [Calendar Quickstart](https://developers.google.com/drive/v3/quickstart/dotnet)
+- [Classroom Quickstart](https://developers.google.com/classroom/quickstart/dotnet)
+- [Calendar Quickstart](https://developers.google.com/calendar/quickstart/dotnet)
 - [Drive V3 Quickstart](https://developers.google.com/drive/v3/web/quickstart/dotnet)
 - [Gmail Quickstart](https://developers.google.com/gmail/api/quickstart/dotnet)
 - [Sheets Quickstart](https://developers.google.com/sheets/api/quickstart/dotnet)
