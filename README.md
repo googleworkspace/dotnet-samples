@@ -1,6 +1,6 @@
-# G Suite .NET Samples [![Build Status](https://travis-ci.org/gsuitedevs/dotnet-samples.svg?branch=master)](https://travis-ci.org/gsuitedevs/dotnet-samples)
+# Googke Workspace .NET Samples [![Build Status](https://travis-ci.org/gsuitedevs/dotnet-samples.svg?branch=master)](https://travis-ci.org/gsuitedevs/dotnet-samples)
 
-.NET samples for [G Suite API](https://developers.google.com/gsuite/) docs.
+.NET samples for [Google Workspace APIs](https://developers.google.com/gsuite/) docs.
 
 ## APIs
 
@@ -22,7 +22,7 @@
 
 ## .NET Client Library
 
-G Suite APIs use the [Google API .NET client library](https://github.com/google/google-api-dotnet-client).
+Google Workspace APIs use the [Google API .NET client library](https://github.com/google/google-api-dotnet-client).
 
 ## Contributing
 
