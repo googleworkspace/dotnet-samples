@@ -1,4 +1,4 @@
-# Googke Workspace .NET Samples [![Build Status](https://travis-ci.org/gsuitedevs/dotnet-samples.svg?branch=master)](https://travis-ci.org/gsuitedevs/dotnet-samples)
+# Googke Workspace .NET Samples [![Build Status](https://travis-ci.org/googleworkspace/dotnet-samples.svg?branch=master)](https://travis-ci.org/googleworkspace/dotnet-samples)
 
 .NET samples for [Google Workspace APIs](https://developers.google.com/gsuite/) docs.
 
