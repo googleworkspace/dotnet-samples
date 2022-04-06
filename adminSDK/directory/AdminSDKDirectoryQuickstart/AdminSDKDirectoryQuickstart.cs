@@ -25,61 +25,68 @@ using System.Threading;
 
 namespace AdminSDKDirectoryQuickstart
 {
+    // Class to demonstrate the use of Directory users list API
 	class Program
     {
-        // If modifying these scopes, delete your previously saved credentials
-        // at ~/.credentials/admin-directory_v1-dotnet-quickstart.json
+        /* Global instance of the scopes required by this quickstart.
+         If modifying these scopes, delete your previously saved token.json/ folder. */
         static string[] Scopes = { DirectoryService.Scope.AdminDirectoryUserReadonly };
         static string ApplicationName = "Directory API .NET Quickstart";
 
         static void Main(string[] args)
         {
-            UserCredential credential;
-
-            using (var stream =
-                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+            try
             {
-                // The file token.json stores the user's access and refresh tokens, and is created
-                // automatically when the authorization flow completes for the first time.
-                string credPath = "token.json";
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
-
-            // Create Directory API service.
-            var service = new DirectoryService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-
-            // Define parameters of request.
-            UsersResource.ListRequest request = service.Users.List();
-            request.Customer = "my_customer";
-            request.MaxResults = 10;
-            request.OrderBy = UsersResource.ListRequest.OrderByEnum.Email;
-
-            // List users.
-            IList<User> users = request.Execute().UsersValue;
-            Console.WriteLine("Users:");
-            if (users != null && users.Count > 0)
-            {
-                foreach (var userItem in users)
+                UserCredential credential;
+                // Load client secrets.
+                using (var stream =
+                       new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
                 {
-                    Console.WriteLine("{0} ({1})", userItem.PrimaryEmail,
-                        userItem.Name.FullName);
+                    /* The file token.json stores the user's access and refresh tokens, and is created
+                     automatically when the authorization flow completes for the first time. */
+                    string credPath = "token.json";
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.FromStream(stream).Secrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true)).Result;
+                    Console.WriteLine("Credential file saved to: " + credPath);
+                }
+
+                // Create Directory API service.
+                var service = new DirectoryService(new BaseClientService.Initializer
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName
+                });
+
+                // Define parameters of request.
+                UsersResource.ListRequest request = service.Users.List();
+                request.Customer = "my_customer";
+                request.MaxResults = 10;
+                request.OrderBy = UsersResource.ListRequest.OrderByEnum.Email;
+
+                // List users.
+                IList<User> users = request.Execute().UsersValue;
+                Console.WriteLine("Users:");
+                if (users != null && users.Count > 0)
+                {
+                    foreach (var userItem in users)
+                    {
+                        Console.WriteLine("{0} ({1})", userItem.PrimaryEmail,
+                            userItem.Name.FullName);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No users found.");
                 }
             }
-            else
+            catch (FileNotFoundException e)
             {
-                Console.WriteLine("No users found.");
+                Console.WriteLine(e.Message);
             }
-            Console.Read();
         }
     }
 }
