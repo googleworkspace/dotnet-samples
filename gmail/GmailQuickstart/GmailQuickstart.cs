@@ -21,64 +21,68 @@ using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace GmailQuickstart
 {
+    // Class to demonstrate the use of Gmail list labels API
     class Program
     {
-        // If modifying these scopes, delete your previously saved credentials
-        // at ~/.credentials/gmail-dotnet-quickstart.json
+        /* Global instance of the scopes required by this quickstart.
+         If modifying these scopes, delete your previously saved token.json/ folder. */
         static string[] Scopes = { GmailService.Scope.GmailReadonly };
         static string ApplicationName = "Gmail API .NET Quickstart";
 
         static void Main(string[] args)
         {
-            UserCredential credential;
-
-            using (var stream =
-                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+            try
             {
-                // The file token.json stores the user's access and refresh tokens, and is created
-                // automatically when the authorization flow completes for the first time.
-                string credPath = "token.json";
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
-
-            // Create Gmail API service.
-            var service = new GmailService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-
-            // Define parameters of request.
-            UsersResource.LabelsResource.ListRequest request = service.Users.Labels.List("me");
-
-            // List labels.
-            IList<Label> labels = request.Execute().Labels;
-            Console.WriteLine("Labels:");
-            if (labels != null && labels.Count > 0)
-            {
-                foreach (var labelItem in labels)
+                UserCredential credential;
+                // Load client secrets.
+                using (var stream =
+                       new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
                 {
-                    Console.WriteLine("{0}", labelItem.Name);
+                    /* The file token.json stores the user's access and refresh tokens, and is created
+                     automatically when the authorization flow completes for the first time. */
+                    string credPath = "token.json";
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.FromStream(stream).Secrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true)).Result;
+                    Console.WriteLine("Credential file saved to: " + credPath);
+                }
+
+                // Create Gmail API service.
+                var service = new GmailService(new BaseClientService.Initializer
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName
+                });
+
+                // Define parameters of request.
+                UsersResource.LabelsResource.ListRequest request = service.Users.Labels.List("me");
+
+                // List labels.
+                IList<Label> labels = request.Execute().Labels;
+                Console.WriteLine("Labels:");
+                if (labels != null && labels.Count > 0)
+                {
+                    foreach (var labelItem in labels)
+                    {
+                        Console.WriteLine("{0}", labelItem.Name);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No labels found.");
                 }
             }
-            else
+            catch (FileNotFoundException e)
             {
-                Console.WriteLine("No labels found.");
+                Console.WriteLine(e.Message);
             }
-            Console.Read();
         }
     }
 }

@@ -26,61 +26,68 @@ using System.Linq;
 
 namespace AdminSDKReportsQuickstart
 {
+    // Class to demonstrate the use of Reports list activity API
     class Program
     {
-        // If modifying these scopes, delete your previously saved credentials
-        // at ~/.credentials/admin-reports_v1-dotnet-quickstart.json
+        /* Global instance of the scopes required by this quickstart.
+         If modifying these scopes, delete your previously saved token.json/ folder. */
         static string[] Scopes = { ReportsService.Scope.AdminReportsAuditReadonly };
         static string ApplicationName = "Reports API .NET Quickstart";
 
         static void Main(string[] args)
         {
-            UserCredential credential;
-
-            using (var stream =
-                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+            try
             {
-                // The file token.json stores the user's access and refresh tokens, and is created
-                // automatically when the authorization flow completes for the first time.
-                string credPath = "token.json";
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
-
-            // Create Reports API service.
-            var service = new ReportsService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-
-            // Define parameters of request.
-            ActivitiesResource.ListRequest request = service.Activities
-                .List("all", "login");
-            request.MaxResults = 10;
-
-            // List activities.
-            IList<Activity> activities = request.Execute().Items;
-            Console.WriteLine("Logins:");
-            if (activities != null && activities.Count > 0)
-            {
-                foreach (var activityItem in activities)
+                UserCredential credential;
+                // Load client secrets.
+                using (var stream =
+                       new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
                 {
-                    Console.WriteLine("{0}: {1} {2}", activityItem.Id.Time,
-                        activityItem.Actor.Email,
-                        activityItem.Events.First<Activity.EventsData>().Name);
+                    /* The file token.json stores the user's access and refresh tokens, and is created
+                        automatically when the authorization flow completes for the first time. */
+                    string credPath = "token.json";
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.FromStream(stream).Secrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true)).Result;
+                    Console.WriteLine("Credential file saved to: " + credPath);
+                }
+
+                // Create Reports API service.
+                var service = new ReportsService(new BaseClientService.Initializer
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName
+                });
+                
+                // Define parameters of request.
+                ActivitiesResource.ListRequest request = service.Activities
+                    .List("all", ActivitiesResource.ListRequest.ApplicationNameEnum.Drive);
+                request.MaxResults = 10;
+
+                // List activities.
+                IList<Activity> activities = request.Execute().Items;
+                Console.WriteLine("Logins:");
+                if (activities != null && activities.Count > 0)
+                {
+                    foreach (var activityItem in activities)
+                    {
+                        Console.WriteLine("{0}: {1} {2}", activityItem.Id.Time,
+                            activityItem.Actor.Email,
+                            activityItem.Events.First().Name);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No logins found.");
                 }
             }
-            else
+            catch (FileNotFoundException e)
             {
-                Console.WriteLine("No logins found.");
+                Console.WriteLine(e.Message);
             }
-            Console.Read();
         }
     }
 }
