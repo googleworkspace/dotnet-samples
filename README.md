@@ -1,11 +1,11 @@
-# Googke Workspace .NET Samples [![Build Status](https://travis-ci.org/googleworkspace/dotnet-samples.svg?branch=master)](https://travis-ci.org/googleworkspace/dotnet-samples)
+# Google Workspace .NET Samples [![Build Status](https://travis-ci.org/googleworkspace/dotnet-samples.svg?branch=master)](https://travis-ci.org/googleworkspace/dotnet-samples)
 
 .NET samples for [Google Workspace APIs](https://developers.google.com/gsuite/) docs.
 
 ## APIs
 
-- [Classroom Quickstart](https://developers.google.com/drive/v3/quickstart/dotnet)
-- [Calendar Quickstart](https://developers.google.com/drive/v3/quickstart/dotnet)
+- [Classroom Quickstart](https://developers.google.com/classroom/quickstart/dotnet)
+- [Calendar Quickstart](https://developers.google.com/calendar/api/quickstart/dotnet)
 - [Drive V3 Quickstart](https://developers.google.com/drive/v3/web/quickstart/dotnet)
 - [Gmail Quickstart](https://developers.google.com/gmail/api/quickstart/dotnet)
 - [Sheets Quickstart](https://developers.google.com/sheets/api/quickstart/dotnet)
