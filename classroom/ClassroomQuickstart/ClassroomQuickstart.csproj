@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.Classroom.v1" Version="1.39.0.1572" />
+    <PackageReference Include="Google.Apis.Classroom.v1" Version="1.57.0.2639" />
   </ItemGroup>
 
 </Project>
