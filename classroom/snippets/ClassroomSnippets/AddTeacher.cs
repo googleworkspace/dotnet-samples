@@ -49,13 +49,7 @@ namespace ClassroomSnippets
                      HttpClientInitializer = credential,
                      ApplicationName = "Classroom API Snippet"
                  });
-                 // // [START AddTeacher]
-                 // string courseId = "123456";
-                 // string teacherEmail = "alice@example.Edu";
-                 // // [START_EXCLUDE silent]
-                 // courseId = _courseId;
-                 // teacherEmail = _teacherEmail;
-                 // // [END_EXCLUDE]
+                
                  var teacher = new Teacher
                  {
                      UserId = teacherEmail
@@ -83,7 +77,7 @@ namespace ClassroomSnippets
                      throw;
                  }
              }
-             // [END classroom_add_teacher]
+             
              return null;
          }
        
@@ -91,4 +85,4 @@ namespace ClassroomSnippets
     }
     
 }
-// [END classroom_create_course]
+// [END classroom_add_teacher]

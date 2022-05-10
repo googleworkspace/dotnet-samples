@@ -48,10 +48,7 @@ namespace ClassroomSnippets
                     HttpClientInitializer = credential,
                     ApplicationName = "Classroom API Snippet"
                 });
-                //string courseId = "123456";
-                // [START_EXCLUDE silent]
-                //courseId = _courseId;
-                // [END_EXCLUDE]
+              
                 Course course = service.Courses.Get(courseId).Execute();
                 course.Section = "Period 3";
                 course.Room = "302";

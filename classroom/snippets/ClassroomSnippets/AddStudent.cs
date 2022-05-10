@@ -70,9 +70,9 @@ namespace ClassroomSnippets
                 }
             }
 
-            // [END classroom_add_student]
             return null;
         }
     }
     
 }
+// [END classroom_add_student]
