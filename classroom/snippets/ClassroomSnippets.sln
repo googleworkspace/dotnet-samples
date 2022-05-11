@@ -1,11 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomSnippets", "ClassroomSnippets\ClassroomSnippets.csproj", "{C60EB245-7D2A-4A1E-B124-4C415648CBD9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomSnippetsTest", "ClassroomSnippetsTest\ClassroomSnippetsTest.csproj", "{65975111-7BC3-4E45-8F50-EE9ADCF90355}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomSnippets", "ClassroomSnippets\ClassroomSnippets.csproj", "{505E06C0-174B-43A0-885D-9E24E66053CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C60EB245-7D2A-4A1E-B124-4C415648CBD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C60EB245-7D2A-4A1E-B124-4C415648CBD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C60EB245-7D2A-4A1E-B124-4C415648CBD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C60EB245-7D2A-4A1E-B124-4C415648CBD9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65975111-7BC3-4E45-8F50-EE9ADCF90355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65975111-7BC3-4E45-8F50-EE9ADCF90355}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65975111-7BC3-4E45-8F50-EE9ADCF90355}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65975111-7BC3-4E45-8F50-EE9ADCF90355}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+		{505E06C0-174B-43A0-885D-9E24E66053CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{505E06C0-174B-43A0-885D-9E24E66053CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{505E06C0-174B-43A0-885D-9E24E66053CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{505E06C0-174B-43A0-885D-9E24E66053CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
