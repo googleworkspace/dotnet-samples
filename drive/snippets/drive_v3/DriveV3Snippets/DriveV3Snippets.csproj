@@ -4,12 +4,10 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-       
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Google.Apis.Auth" Version="1.57.0" />
-      <PackageReference Include="Google.Apis.Classroom.v1" Version="1.57.0.2639" />
+      <PackageReference Include="Google.Apis.Drive.v3" Version="1.57.0.2663" />
     </ItemGroup>
 
 </Project>
