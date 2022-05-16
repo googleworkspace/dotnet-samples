@@ -30,7 +30,7 @@ namespace DriveV2Snippets
         /// Upload a file to the specified folder.
         /// </summary>
         /// <param name="folderId"></param>
-        /// <returns></returns>
+        /// <returns>Inserted file metadata if successful, null otherwise</returns>
 
         public File DriveUploadToFolder(string folderId)
         {

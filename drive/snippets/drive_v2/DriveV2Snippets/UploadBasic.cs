@@ -72,9 +72,9 @@ namespace DriveV2Snippets
                 {
                     Console.WriteLine("Credential Not found");
                 }
-                else if (e is FileNotFoundException)
+                else if (e is GoogleApiException)
                 {
-                    Console.WriteLine("File not found");
+                    Console.WriteLine(" Failed With an Error {0}",e.Message);
                 }
                 else
                 {

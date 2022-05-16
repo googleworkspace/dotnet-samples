@@ -74,10 +74,11 @@ namespace DriveV2Snippets
                 {
                     Console.WriteLine("Credential Not found");
                 }
-              else if (e is GoogleApiException)
-                 {
-                    Console.WriteLine("Failed with an Error {0}",e.Message);   
-                       }
+                else if (e is GoogleApiException)
+                {
+                    Console.WriteLine(" Failed With an Error {0}",e.Message);
+                }
+             
                 else
                 {
                     throw;
@@ -87,4 +88,4 @@ namespace DriveV2Snippets
         }
     }
 }
-// [END upload_with_conversion]
+// [END drive_upload_with_conversion]
