@@ -25,59 +25,66 @@ using System.Threading;
 
 namespace AdminSDKResellerQuickstart
 {
+    // Class to demonstrate the use of Reseller subscriptions list API
     class Program
     {
-        // If modifying these scopes, delete your previously saved credentials
-        // at ~/.credentials/reseller-dotnet-quickstart.json
+        /* Global instance of the scopes required by this quickstart.
+         If modifying these scopes, delete your previously saved token.json/ folder. */  
         static string[] Scopes = { ResellerService.Scope.AppsOrder };
         static string ApplicationName = "G Suite Reseller API .NET Quickstart";
 
         static void Main(string[] args)
         {
-            UserCredential credential;
-
-            using (var stream =
-                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+            try
             {
-                // The file token.json stores the user's access and refresh tokens, and is created
-                // automatically when the authorization flow completes for the first time.
-                string credPath = "token.json";
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
-
-            // Create G Suite Reseller API service.
-            var service = new ResellerService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-
-            // Define parameters of request.
-            SubscriptionsResource.ListRequest request = service.Subscriptions.List();
-            request.MaxResults = 10;
-
-            // List subscriptions.
-            IList<Subscription> subscriptions = request.Execute().SubscriptionsValue;
-            Console.WriteLine("Subscriptions:");
-            if (subscriptions != null && subscriptions.Count > 0)
-            {
-                foreach (var subscription in subscriptions)
+                UserCredential credential;
+                // Load client secrets.
+                using (var stream =
+                       new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
                 {
-                    Console.WriteLine("{0} ({1}, {2})", subscription.CustomerId,
-                        subscription.SkuId, subscription.Plan.PlanName);
+                    /* The file token.json stores the user's access and refresh tokens, and is created
+                     automatically when the authorization flow completes for the first time.*/
+                    string credPath = "token.json";
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.FromStream(stream).Secrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true)).Result;
+                    Console.WriteLine("Credential file saved to: " + credPath);
+                }
+
+                // Create G Suite Reseller API service.
+                var service = new ResellerService(new BaseClientService.Initializer
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName
+                });
+
+                // Define parameters of request.
+                SubscriptionsResource.ListRequest request = service.Subscriptions.List();
+                request.MaxResults = 10;
+
+                // List subscriptions.
+                IList<Subscription> subscriptions = request.Execute().SubscriptionsValue;
+                Console.WriteLine("Subscriptions:");
+                if (subscriptions != null && subscriptions.Count > 0)
+                {
+                    foreach (var subscription in subscriptions)
+                    {
+                        Console.WriteLine("{0} ({1}, {2})", subscription.CustomerId,
+                            subscription.SkuId, subscription.Plan.PlanName);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No subscriptions found.");
                 }
             }
-            else
+            catch (FileNotFoundException e)
             {
-                Console.WriteLine("No subscriptions found.");
+                Console.WriteLine(e.Message);
             }
-            Console.Read();
         }
     }
 }

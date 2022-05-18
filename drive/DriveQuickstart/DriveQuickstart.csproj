@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.Drive.v3" Version="1.39.0.1566" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.57.0.2601" />
   </ItemGroup>
 
 </Project>
