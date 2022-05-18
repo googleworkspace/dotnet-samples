@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START drive_upload_with_conversion]
+// [START drive_fetch_start_page_token]
 
+using Google;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v2beta;
 using Google.Apis.Services;
@@ -21,15 +22,14 @@ using Google.Apis.Services;
 
 namespace DriveV2Snippets
 {
-    // Class to demonstrate Drive's upload with conversion use-case.
-    public class UploadWithConversion
+    // Class to demonstrate use-case of Drive's fetch start page token
+    public class FetchStartPageToken
     {
-        
         /// <summary>
-        /// Upload file with conversion.
+        /// Retrieve the starting page token.
         /// </summary>
-        /// <returns>Inserted file id if successful, null otherwise.</returns>
-        public static string DriveUploadWithConversion()
+        /// <returns>start page token as String, null otherwise.</returns>
+        public static string DriveFetchStartPageToken()
         {
             try
             {
@@ -45,27 +45,14 @@ namespace DriveV2Snippets
                     HttpClientInitializer = credential,
                     ApplicationName = "Drive API Snippets"
                 });
-               // Upload file My Report on drive
-                var fileMetadata = new Google.Apis.Drive.v2beta.Data.File()
-                {
-                    Title = "My Report",
-                    MimeType = "application/vnd.google-apps.spreadsheet"
-                };
-                FilesResource.InsertMediaUpload request;
-                using (var stream = new FileStream("files/report.csv",
-                           FileMode.Open))
-                {
-                    // Create a new file, with metadata and stream.
-                    request = service.Files.Insert(
-                        fileMetadata, stream, "text/csv");
-                    request.Fields = "id";
-                    request.Upload();
-                }
-                var file = request.ResponseBody;
-                // Prints the uploaded file id.
-                Console.WriteLine("File ID: " + file.Id);
-                
-                return file.Id;
+
+                var driveService = service;
+                var response = driveService.Changes.GetStartPageToken().Execute();
+                // Prints the token value.
+                Console.WriteLine("Start token: " + response.StartPageTokenValue);
+                return response.StartPageTokenValue;
+
+
             }
             catch (Exception e)
             {
@@ -78,7 +65,6 @@ namespace DriveV2Snippets
                 {
                     Console.WriteLine(" Failed With an Error {0}",e.Message);
                 }
-             
                 else
                 {
                     throw;
@@ -88,4 +74,5 @@ namespace DriveV2Snippets
         }
     }
 }
-// [END drive_upload_with_conversion]
+
+// [END drive_fetch_start_page_token]

@@ -12,24 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START drive_upload_with_conversion]
-
+// [START drive_fetch_changes]
+using Google;
 using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v2.Data;
 using Google.Apis.Drive.v2beta;
 using Google.Apis.Services;
 
 
 namespace DriveV2Snippets
 {
-    // Class to demonstrate Drive's upload with conversion use-case.
-    public class UploadWithConversion
+    // Class to demonstrate use-case of Drive's fetch changes in file.
+    public class FetchChanges
     {
-        
         /// <summary>
-        /// Upload file with conversion.
+        /// Retrieve the list of changes for the currently authenticated user.
+        /// prints changed file's ID
         /// </summary>
-        /// <returns>Inserted file id if successful, null otherwise.</returns>
-        public static string DriveUploadWithConversion()
+        /// <param name="savedStartPageToken">last saved start token for this user.</param>
+        /// <returns>saved token for the current state of the account, null otherwise.</returns>
+        public static string DriveFetchChanges(string savedStartPageToken)
         {
             try
             {
@@ -45,27 +47,30 @@ namespace DriveV2Snippets
                     HttpClientInitializer = credential,
                     ApplicationName = "Drive API Snippets"
                 });
-               // Upload file My Report on drive
-                var fileMetadata = new Google.Apis.Drive.v2beta.Data.File()
+              
+                // Begin with our last saved start token for this user or the
+                // current token from GetStartPageToken()
+                string pageToken = savedStartPageToken;
+                while (pageToken != null)
                 {
-                    Title = "My Report",
-                    MimeType = "application/vnd.google-apps.spreadsheet"
-                };
-                FilesResource.InsertMediaUpload request;
-                using (var stream = new FileStream("files/report.csv",
-                           FileMode.Open))
-                {
-                    // Create a new file, with metadata and stream.
-                    request = service.Files.Insert(
-                        fileMetadata, stream, "text/csv");
-                    request.Fields = "id";
-                    request.Upload();
+                    var request = service.Changes.List();
+                    request.PageToken = pageToken;
+                    request.Spaces = "drive";
+                    var changes = request.Execute();
+                    foreach (var change in changes.Items)
+                    {
+                        // Process change
+                        Console.WriteLine("Change found for file: " + change.FileId);
+                    }
+                    if (changes.NewStartPageToken != null)
+                    {
+                        // Last page, save this token for the next polling interval
+                        savedStartPageToken = changes.NewStartPageToken;
+                    }
+                    pageToken = changes.NextPageToken;
                 }
-                var file = request.ResponseBody;
-                // Prints the uploaded file id.
-                Console.WriteLine("File ID: " + file.Id);
                 
-                return file.Id;
+                return savedStartPageToken;
             }
             catch (Exception e)
             {
@@ -78,7 +83,6 @@ namespace DriveV2Snippets
                 {
                     Console.WriteLine(" Failed With an Error {0}",e.Message);
                 }
-             
                 else
                 {
                     throw;
@@ -86,6 +90,8 @@ namespace DriveV2Snippets
             }
             return null;
         }
+        
     }
+
 }
-// [END drive_upload_with_conversion]
+// [END drive_fetch_changes]
