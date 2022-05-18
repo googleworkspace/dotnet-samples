@@ -1,4 +1,4 @@
-(Please search [existing issues](https://github.com/gsuitedevs/dotnet-samples/issues) before creating a new one.)
+(Please search [existing issues](https://github.com/googleworkspace/dotnet-samples/issues) before creating a new one.)
 
 **Sample Name:**
 

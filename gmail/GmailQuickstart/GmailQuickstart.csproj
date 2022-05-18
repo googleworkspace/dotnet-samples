@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.Gmail.v1" Version="1.39.0.1572" />
+    <PackageReference Include="Google.Apis.Gmail.v1" Version="1.57.0.2622" />
   </ItemGroup>
 
 </Project>

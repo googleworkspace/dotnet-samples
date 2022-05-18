@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomSnippets", "ClassroomSnippets\ClassroomSnippets.csproj", "{505E06C0-174B-43A0-885D-9E24E66053CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{505E06C0-174B-43A0-885D-9E24E66053CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{505E06C0-174B-43A0-885D-9E24E66053CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{505E06C0-174B-43A0-885D-9E24E66053CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{505E06C0-174B-43A0-885D-9E24E66053CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

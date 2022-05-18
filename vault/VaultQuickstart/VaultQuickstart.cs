@@ -19,68 +19,70 @@ using Google.Apis.Vault.v1.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace VaultQuickstart
 {
+    // Class to demonstrate the use of Vault list matters API
     class Program
     {
-        // If modifying these scopes, delete your previously saved credentials
-        // at ~/.credentials/vault.googleapis.com-dotnet-quickstart.json
+        /* Global instance of the scopes required by this quickstart.
+         If modifying these scopes, delete your previously saved token.json/ folder. */
         static string[] Scopes = { VaultService.Scope.EdiscoveryReadonly };
         static string ApplicationName = "Google Vault API .NET Quickstart";
 
         static void Main(string[] args)
         {
-            UserCredential credential;
-
-            using (var stream =
-                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+            try
             {
-                // The file token.json stores the user's access and refresh tokens, and is created
-                // automatically when the authorization flow completes for the first time.
-                string credPath = "token.json";
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
-
-            // Create Vault API service.
-            var service = new VaultService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
-
-            // Define request parameters.
-            MattersResource.ListRequest request = service.Matters.List();
-            request.PageSize = 10;
-
-            // List matters.
-            ListMattersResponse response = request.Execute();
-            Console.WriteLine("Matters:");
-            if (response.Matters != null && response.Matters.Count > 0)
-            {
-                foreach (var matter in response.Matters)
+                UserCredential credential;
+                // Load client secrets.
+                using (var stream =
+                       new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
                 {
-                    Console.WriteLine("{0} ({1})", matter.Name, matter.MatterId);
+                    /* The file token.json stores the user's access and refresh tokens, and is created
+                     automatically when the authorization flow completes for the first time. */
+                    string credPath = "token.json";
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.FromStream(stream).Secrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true)).Result;
+                    Console.WriteLine("Credential file saved to: " + credPath);
+                }
+
+                // Create Vault API service.
+                var service = new VaultService(new BaseClientService.Initializer
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName
+                });
+
+                // Define request parameters.
+                MattersResource.ListRequest request = service.Matters.List();
+                request.PageSize = 10;
+
+                // List matters.
+                ListMattersResponse response = request.Execute();
+                Console.WriteLine("Matters:");
+                if (response.Matters != null && response.Matters.Count > 0)
+                {
+                    foreach (var matter in response.Matters)
+                    {
+                        Console.WriteLine("{0} ({1})", matter.Name, matter.MatterId);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No matters found.");
                 }
             }
-            else
+            catch (FileNotFoundException e)
             {
-                Console.WriteLine("No matters found.");
+                Console.WriteLine(e.Message);
             }
-            Console.Read();
-
         }
     }
 }
