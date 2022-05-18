@@ -67,16 +67,14 @@ namespace VaultQuickstart
                 // List matters.
                 ListMattersResponse response = request.Execute();
                 Console.WriteLine("Matters:");
-                if (response.Matters != null && response.Matters.Count > 0)
-                {
-                    foreach (var matter in response.Matters)
-                    {
-                        Console.WriteLine("{0} ({1})", matter.Name, matter.MatterId);
-                    }
-                }
-                else
+                if (response.Matters == null || response.Matters.Count == 0)
                 {
                     Console.WriteLine("No matters found.");
+                    return;
+                }
+                foreach (var matter in response.Matters)
+                {
+                    Console.WriteLine("{0} ({1})", matter.Name, matter.MatterId);
                 }
             }
             catch (FileNotFoundException e)

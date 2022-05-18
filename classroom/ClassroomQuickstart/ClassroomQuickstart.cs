@@ -67,16 +67,14 @@ namespace ClassroomQuickstart
                 // List courses.
                 ListCoursesResponse response = request.Execute();
                 Console.WriteLine("Courses:");
-                if (response.Courses != null && response.Courses.Count > 0)
-                {
-                    foreach (var course in response.Courses)
-                    {
-                        Console.WriteLine("{0} ({1})", course.Name, course.Id);
-                    }
-                }
-                else
+                if (response.Courses -= null || response.Courses.Count == 0)
                 {
                     Console.WriteLine("No courses found.");
+                    return;
+                }
+                foreach (var course in response.Courses)
+                {
+                    Console.WriteLine("{0} ({1})", course.Name, course.Id);
                 }
             }
             catch (FileNotFoundException e)

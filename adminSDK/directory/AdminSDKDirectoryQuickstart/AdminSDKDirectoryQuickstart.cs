@@ -70,17 +70,15 @@ namespace AdminSDKDirectoryQuickstart
                 // List users.
                 IList<User> users = request.Execute().UsersValue;
                 Console.WriteLine("Users:");
-                if (users != null && users.Count > 0)
-                {
-                    foreach (var userItem in users)
-                    {
-                        Console.WriteLine("{0} ({1})", userItem.PrimaryEmail,
-                            userItem.Name.FullName);
-                    }
-                }
-                else
+                if (users == null || users.Count == 0)
                 {
                     Console.WriteLine("No users found.");
+                    return;
+                }
+                foreach (var userItem in users)
+                {
+                    Console.WriteLine("{0} ({1})", userItem.PrimaryEmail,
+                        userItem.Name.FullName);
                 }
             }
             catch (FileNotFoundException e)

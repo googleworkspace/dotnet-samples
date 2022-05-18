@@ -71,18 +71,16 @@ namespace SheetsQuickstart
                 // https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
                 ValueRange response = request.Execute();
                 IList<IList<Object>> values = response.Values;
-                if (values != null && values.Count > 0)
-                {
-                    Console.WriteLine("Name, Major");
-                    foreach (var row in values)
-                    {
-                        // Print columns A and E, which correspond to indices 0 and 4.
-                        Console.WriteLine("{0}, {1}", row[0], row[4]);
-                    }
-                }
-                else
+                if (values == null || values.Count == 0)
                 {
                     Console.WriteLine("No data found.");
+                    return;
+                }
+                Console.WriteLine("Name, Major");
+                foreach (var row in values)
+                {
+                    // Print columns A and E, which correspond to indices 0 and 4.
+                    Console.WriteLine("{0}, {1}", row[0], row[4]);
                 }
             }
             catch (FileNotFoundException e)

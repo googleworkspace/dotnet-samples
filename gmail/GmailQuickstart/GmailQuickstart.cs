@@ -67,16 +67,14 @@ namespace GmailQuickstart
                 // List labels.
                 IList<Label> labels = request.Execute().Labels;
                 Console.WriteLine("Labels:");
-                if (labels != null && labels.Count > 0)
-                {
-                    foreach (var labelItem in labels)
-                    {
-                        Console.WriteLine("{0}", labelItem.Name);
-                    }
-                }
-                else
+                if (labels == null || labels.Count == 0)
                 {
                     Console.WriteLine("No labels found.");
+                    return;
+                }
+                foreach (var labelItem in labels)
+                {
+                    Console.WriteLine("{0}", labelItem.Name);
                 }
             }
             catch (FileNotFoundException e)

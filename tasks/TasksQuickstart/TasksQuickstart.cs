@@ -68,16 +68,14 @@ namespace TasksQuickstart
                 // List task lists.
                 IList<TaskList> taskLists = listRequest.Execute().Items;
                 Console.WriteLine("Task Lists:");
-                if (taskLists != null && taskLists.Count > 0)
-                {
-                    foreach (var taskList in taskLists)
-                    {
-                        Console.WriteLine("{0} ({1})", taskList.Title, taskList.Id);
-                    }
-                }
-                else
+                if (taskLists == null || taskLists.Count == 0)
                 {
                     Console.WriteLine("No task lists found.");
+                    return;
+                }
+                foreach (var taskList in taskLists)
+                {
+                    Console.WriteLine("{0} ({1})", taskList.Title, taskList.Id);
                 }
             }
             catch (FileNotFoundException e)

@@ -70,21 +70,19 @@ namespace DriveActivityQuickstart
                 // List activities.
                 IList<DriveActivity> activities = queryRequest.Execute().Activities;
                 Console.WriteLine("Recent activity:");
-                if (activities != null && activities.Count > 0)
-                {
-                    foreach (var activity in activities)
-                    {
-                        string time = GetTimeInfo(activity);
-                        string action = GetActionInfo(activity.PrimaryActionDetail);
-                        List<string> actors = activity.Actors.Select(GetActorInfo).ToList();
-                        List<string> targets = activity.Targets.Select(GetTargetInfo).ToList();
-                        Console.WriteLine("{0}: {1}, {2}, {3}",
-                            time, Truncated(actors), action, Truncated(targets));
-                    }
-                }
-                else
+                if (activities == null || activities.Count == 0)
                 {
                     Console.WriteLine("No activity.");
+                    return;
+                }
+                foreach (var activity in activities)
+                {
+                    string time = GetTimeInfo(activity);
+                    string action = GetActionInfo(activity.PrimaryActionDetail);
+                    List<string> actors = activity.Actors.Select(GetActorInfo).ToList();
+                    List<string> targets = activity.Targets.Select(GetTargetInfo).ToList();
+                    Console.WriteLine("{0}: {1}, {2}, {3}",
+                        time, Truncated(actors), action, Truncated(targets));
                 }
             }
             catch (FileNotFoundException e)

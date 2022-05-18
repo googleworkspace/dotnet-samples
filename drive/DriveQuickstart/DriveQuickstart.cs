@@ -68,16 +68,14 @@ namespace DriveQuickstart
                 IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute()
                     .Files;
                 Console.WriteLine("Files:");
-                if (files != null && files.Count > 0)
-                {
-                    foreach (var file in files)
-                    {
-                        Console.WriteLine("{0} ({1})", file.Name, file.Id);
-                    }
-                }
-                else
+                if (files == null || files.Count == 0)
                 {
                     Console.WriteLine("No files found.");
+                    return;
+                }
+                foreach (var file in files)
+                {
+                    Console.WriteLine("{0} ({1})", file.Name, file.Id);
                 }
             }
             catch (FileNotFoundException e)

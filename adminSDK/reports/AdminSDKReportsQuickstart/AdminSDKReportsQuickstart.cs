@@ -70,18 +70,16 @@ namespace AdminSDKReportsQuickstart
                 // List activities.
                 IList<Activity> activities = request.Execute().Items;
                 Console.WriteLine("Logins:");
-                if (activities != null && activities.Count > 0)
-                {
-                    foreach (var activityItem in activities)
-                    {
-                        Console.WriteLine("{0}: {1} {2}", activityItem.Id.Time,
-                            activityItem.Actor.Email,
-                            activityItem.Events.First().Name);
-                    }
-                }
-                else
+                if (activities == null || activities.Count == 0)
                 {
                     Console.WriteLine("No logins found.");
+                    return;
+                }
+                foreach (var activityItem in activities)
+                {
+                    Console.WriteLine("{0}: {1} {2}", activityItem.Id.Time,
+                        activityItem.Actor.Email,
+                        activityItem.Events.First().Name);
                 }
             }
             catch (FileNotFoundException e)

@@ -71,21 +71,19 @@ namespace CalendarQuickstart
                 // List events.
                 Events events = request.Execute();
                 Console.WriteLine("Upcoming events:");
-                if (events.Items != null && events.Items.Count > 0)
-                {
-                    foreach (var eventItem in events.Items)
-                    {
-                        string when = eventItem.Start.DateTime.ToString();
-                        if (String.IsNullOrEmpty(when))
-                        {
-                            when = eventItem.Start.Date;
-                        }
-                        Console.WriteLine("{0} ({1})", eventItem.Summary, when);
-                    }
-                }
-                else
+                if (events.Items == null || events.Items.Count == 0)
                 {
                     Console.WriteLine("No upcoming events found.");
+                    return;
+                }
+                foreach (var eventItem in events.Items)
+                {
+                    string when = eventItem.Start.DateTime.ToString();
+                    if (String.IsNullOrEmpty(when))
+                    {
+                        when = eventItem.Start.Date;
+                    }
+                    Console.WriteLine("{0} ({1})", eventItem.Summary, when);
                 }
             }
             catch (FileNotFoundException e)
