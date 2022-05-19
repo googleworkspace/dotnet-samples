@@ -14,8 +14,9 @@
 
 // [START drive_upload_basic]
 
+using Google;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis.Drive.v2beta;
+using Google.Apis.Drive.v2;
 using Google.Apis.Services;
 
 namespace DriveV2Snippets
@@ -46,7 +47,7 @@ namespace DriveV2Snippets
                 });
 
                 // Upload file photo.jpg on drive.
-                var fileMetadata = new Google.Apis.Drive.v2beta.Data.File()
+                var fileMetadata = new Google.Apis.Drive.v2.Data.File()
                 {
                     Title = "photo.jpg"
                 };

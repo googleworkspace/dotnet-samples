@@ -14,8 +14,9 @@
 
 // [START drive_upload_with_conversion]
 
+using Google;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis.Drive.v2beta;
+using Google.Apis.Drive.v2;
 using Google.Apis.Services;
 
 
@@ -46,7 +47,7 @@ namespace DriveV2Snippets
                     ApplicationName = "Drive API Snippets"
                 });
                // Upload file My Report on drive
-                var fileMetadata = new Google.Apis.Drive.v2beta.Data.File()
+                var fileMetadata = new Google.Apis.Drive.v2.Data.File()
                 {
                     Title = "My Report",
                     MimeType = "application/vnd.google-apps.spreadsheet"
@@ -85,6 +86,11 @@ namespace DriveV2Snippets
                 }
             }
             return null;
+        }
+
+        static void Main(string[] args)
+        {
+            DriveUploadWithConversion();
         }
     }
 }
