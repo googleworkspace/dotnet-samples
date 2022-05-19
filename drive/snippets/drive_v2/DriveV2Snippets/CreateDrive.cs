@@ -12,25 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START drive_upload_with_conversion]
+// [START drive_create_drive]
 
 using Google;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v2;
+using Google.Apis.Drive.v2.Data;
 using Google.Apis.Services;
 
 
 namespace DriveV2Snippets
 {
-    // Class to demonstrate Drive's upload with conversion use-case.
-    public class UploadWithConversion
+    // Class to demonstrate use of Drive's create drive.
+    public class CreateDrive
     {
-        
         /// <summary>
-        /// Upload file with conversion.
+        /// Create a drive.
         /// </summary>
-        /// <returns>Inserted file id if successful, null otherwise.</returns>
-        public static string DriveUploadWithConversion()
+        /// <returns>newly created drive Id.</returns>
+        
+        public static string DriveCreateDrive()
         {
             try
             {
@@ -46,40 +47,28 @@ namespace DriveV2Snippets
                     HttpClientInitializer = credential,
                     ApplicationName = "Drive API Snippets"
                 });
-               // Upload file My Report on drive
-                var fileMetadata = new Google.Apis.Drive.v2.Data.File()
+                var driveMetadata = new Drive()
                 {
-                    Title = "My Report",
-                    MimeType = "application/vnd.google-apps.spreadsheet"
+                    Name = "Project Resources"
                 };
-                FilesResource.InsertMediaUpload request;
-                using (var stream = new FileStream("files/report.csv",
-                           FileMode.Open))
-                {
-                    // Create a new file, with metadata and stream.
-                    request = service.Files.Insert(
-                        fileMetadata, stream, "text/csv");
-                    request.Fields = "id";
-                    request.Upload();
-                }
-                var file = request.ResponseBody;
-                // Prints the uploaded file id.
-                Console.WriteLine("File ID: " + file.Id);
-                
-                return file.Id;
+                var requestId = Guid.NewGuid().ToString();
+                var request = service.Drives.Insert(driveMetadata, requestId);
+                request.Fields = "id";
+                var drive = request.Execute();
+                Console.WriteLine("Drive ID: " + drive.Id);
+                return drive.Id;
             }
             catch (Exception e)
             {
                 // TODO(developer) - handle error appropriately
                 if (e is AggregateException)
                 {
-                    Console.WriteLine("Credential Not found");
+                    Console.WriteLine("Credential Not found. Error : {0}",e.Message);
                 }
                 else if (e is GoogleApiException)
                 {
-                    Console.WriteLine(" Failed With an Error {0}",e.Message);
+                    Console.WriteLine("Failed with an Error : {0}", e.Message);
                 }
-             
                 else
                 {
                     throw;
@@ -89,5 +78,6 @@ namespace DriveV2Snippets
         }
         
     }
+
 }
-// [END drive_upload_with_conversion]
+// [END drive_create_drive]
