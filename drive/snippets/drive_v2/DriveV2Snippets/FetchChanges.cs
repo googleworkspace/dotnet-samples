@@ -15,8 +15,7 @@
 // [START drive_fetch_changes]
 using Google;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis.Drive.v2.Data;
-using Google.Apis.Drive.v2beta;
+using Google.Apis.Drive.v2;
 using Google.Apis.Services;
 
 
