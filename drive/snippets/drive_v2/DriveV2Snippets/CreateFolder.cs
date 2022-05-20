@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START drive_create_Folder]
+// [START drive_create_folder]
 
 using Google;
 using Google.Apis.Auth.OAuth2;
@@ -81,4 +81,4 @@ namespace DriveV2Snippets
     }
 
 }
-// [END drive_create_Folder]
+// [END drive_create_folder]
