@@ -16,7 +16,7 @@
 
 using Google;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis.Drive.v2beta;
+using Google.Apis.Drive.v2;
 using Google.Apis.Services;
 
 
@@ -48,7 +48,7 @@ namespace DriveV2Snippets
                     ApplicationName = "Drive API Snippets"
                 });
 
-                var fileMetadata = new Google.Apis.Drive.v2beta.Data.File()
+                var fileMetadata = new Google.Apis.Drive.v2.Data.File()
                 {
                     ModifiedDate = DateTime.Now
                 };

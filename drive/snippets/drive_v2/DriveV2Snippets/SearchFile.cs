@@ -12,30 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START drive_upload_basic]
-
+// [START drive_search_files] 
 using Google;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v2;
 using Google.Apis.Services;
+using File = Google.Apis.Drive.v2.Data.File;
+
 
 namespace DriveV2Snippets
 {
-    // Class to demonstrate use of Drive insert file API
-    public class UploadBasic
-    {
+    // Class to demonstrate use-case of Drive search files. 
+    public class SearchFiles
+    {   
         /// <summary>
-        /// Upload new file.
+        /// Search for specific set of files.
         /// </summary>
-        /// <param name="filePath">Image path to upload.</param>
-        /// <returns>Inserted file metadata if successful, null otherwise.</returns>
-        public static string DriveUploadBasic(string filePath)
+        /// <returns>search result list, null otherwise.</returns>
+        public static IList<File> DriveSearchFiles()
         {
             try
             {
                 /* Load pre-authorized user credentials from the environment.
-                 TODO(developer) - See https://developers.google.com/identity for
-                 guides on implementing OAuth2 for your application. */
+               TODO(developer) - See https://developers.google.com/identity for
+               guides on implementing OAuth2 for your application. */
                 GoogleCredential credential = GoogleCredential.GetApplicationDefault()
                     .CreateScoped(DriveService.Scope.Drive);
 
@@ -45,26 +45,27 @@ namespace DriveV2Snippets
                     HttpClientInitializer = credential,
                     ApplicationName = "Drive API Snippets"
                 });
-
-                // Upload file photo.jpg on drive.
-                var fileMetadata = new Google.Apis.Drive.v2.Data.File()
+         
+                var files = new List<File>();
+                string pageToken = null;
+                do
                 {
-                    Title = "photo.jpg"
-                };
-                FilesResource.InsertMediaUpload request;
-                // Create a new file on drive
-                using (var stream = new FileStream("files/photo.jpg",
-                           FileMode.Open))
-                {
-                    // Create a new file, with metadata and stream.
-                    request = service.Files.Insert(
-                        fileMetadata, stream, "image/jpeg");
-                    request.Fields = "id";
-                    request.Upload();
-                }
-                var file = request.ResponseBody;
-                Console.WriteLine("File ID: " + file.Id);
-                return file.Id;
+                    var request = service.Files.List();
+                    request.Q = "mimeType='image/jpeg'";
+                    request.Spaces = "drive";
+                    request.Fields = "nextPageToken, items(id, title)";
+                    request.PageToken = pageToken;
+                    var result = request.Execute();
+                    foreach (var file in result.Items)
+                    {
+                        Console.WriteLine($"Found file: {file.Title} ({file.Id})");
+                    }
+                    // [START_EXCLUDE silent]
+                    files.AddRange(result.Items);
+                    // [END_EXCLUDE]
+                    pageToken = result.NextPageToken;
+                } while (pageToken != null);
+                return files;
             }
             catch (Exception e)
             {
@@ -75,7 +76,7 @@ namespace DriveV2Snippets
                 }
                 else if (e is GoogleApiException)
                 {
-                    Console.WriteLine(" Failed With an Error {0}",e.Message);
+                    Console.WriteLine("Failed with an error {0}",e.Message);
                 }
                 else
                 {
@@ -86,4 +87,4 @@ namespace DriveV2Snippets
         }
     }
 }
-// [END drive_upload_basic]
+// [END drive_search_files] 

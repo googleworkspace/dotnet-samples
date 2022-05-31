@@ -15,7 +15,7 @@
 // [START drive_move_file_to_folder]
 using Google;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis.Drive.v2beta;
+using Google.Apis.Drive.v2;
 using Google.Apis.Services;
 
 // Class to demonstrate use-case of Drive move file to folder.
@@ -54,7 +54,7 @@ namespace DriveV2Snippets
                  var file = getRequest.Execute();
                  var previousParents = string.Join(",", file.Parents.Select(parent => parent.Id));
                  // Move the file to the new folder
-                 var updateRequest = service.Files.Update(new Google.Apis.Drive.v2beta.Data.File(),
+                 var updateRequest = service.Files.Update(new Google.Apis.Drive.v2.Data.File(),
                      fileId);
                  updateRequest.Fields = "id, parents";
                  updateRequest.AddParents = folderId;
