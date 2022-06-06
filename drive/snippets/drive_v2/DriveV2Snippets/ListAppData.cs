@@ -12,24 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START drive_upload_basic]
+// [START drive_list_appdata]
 
 using Google;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v2;
+using Google.Apis.Drive.v2.Data;
 using Google.Apis.Services;
 
 namespace DriveV2Snippets
 {
-    // Class to demonstrate use of Drive insert file API
-    public class UploadBasic
+    // Class of demonstrate the use of Drive upload app data. 
+    public class ListAppData
     {
         /// <summary>
-        /// Upload new file.
+        /// List down files in the application data folder.
         /// </summary>
-        /// <param name="filePath">Image path to upload.</param>
-        /// <returns>Inserted file metadata if successful, null otherwise.</returns>
-        public static string DriveUploadBasic(string filePath)
+        /// <returns>list of 10 files, null otherwise.</returns>
+        public static FileList DriveListAppData()
         {
             try
             {
@@ -46,36 +46,26 @@ namespace DriveV2Snippets
                     ApplicationName = "Drive API Snippets"
                 });
 
-                // Upload file photo.jpg on drive.
-                var fileMetadata = new Google.Apis.Drive.v2.Data.File()
+                var request =service.Files.List();
+                request.Spaces = "appDataFolder";
+                request.Fields = "nextPageToken, items(id, title)";
+                request.MaxResults = 10;
+                var result = request.Execute();
+                foreach (var file in result.Items)
                 {
-                    Title = "photo.jpg"
-                };
-                FilesResource.InsertMediaUpload request;
-                // Create a new file on drive
-                using (var stream = new FileStream("files/photo.jpg",
-                           FileMode.Open))
-                {
-                    // Create a new file, with metadata and stream.
-                    request = service.Files.Insert(
-                        fileMetadata, stream, "image/jpeg");
-                    request.Fields = "id";
-                    request.Upload();
+                    Console.WriteLine($"Found file: {file.Title} ({file.Id})");
                 }
-                var file = request.ResponseBody;
-                Console.WriteLine("File ID: " + file.Id);
-                return file.Id;
             }
             catch (Exception e)
             {
                 // TODO(developer) - handle error appropriately
                 if (e is AggregateException)
                 {
-                    Console.WriteLine("Credential Not found");
+                    Console.WriteLine("Credentials Not found {0}", e.Message);
                 }
                 else if (e is GoogleApiException)
                 {
-                    Console.WriteLine(" Failed With an Error {0}",e.Message);
+                    Console.WriteLine("Failed with an error {0}", e);
                 }
                 else
                 {
@@ -86,4 +76,4 @@ namespace DriveV2Snippets
         }
     }
 }
-// [END drive_upload_basic]
+// [END drive_list_appdata]

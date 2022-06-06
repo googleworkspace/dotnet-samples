@@ -12,24 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START drive_upload_basic]
+// [START drive_create_team_drive]
 
 using Google;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v2;
+using Google.Apis.Drive.v2.Data;
 using Google.Apis.Services;
 
 namespace DriveV2Snippets
 {
-    // Class to demonstrate use of Drive insert file API
-    public class UploadBasic
+    // Class to demonstrate use of Drive create team drive.
+    public class CreateTeamDrive
     {
         /// <summary>
-        /// Upload new file.
+        /// Create a drive for team.
         /// </summary>
-        /// <param name="filePath">Image path to upload.</param>
-        /// <returns>Inserted file metadata if successful, null otherwise.</returns>
-        public static string DriveUploadBasic(string filePath)
+        /// <returns>id of the created drive, null otherwise.</returns>
+        public static string DriveCreateTeamDrive()
         {
             try
             {
@@ -46,25 +46,16 @@ namespace DriveV2Snippets
                     ApplicationName = "Drive API Snippets"
                 });
 
-                // Upload file photo.jpg on drive.
-                var fileMetadata = new Google.Apis.Drive.v2.Data.File()
+                var teamDriveMetadata = new TeamDrive()
                 {
-                    Title = "photo.jpg"
+                    Name = "Project Resources"
                 };
-                FilesResource.InsertMediaUpload request;
-                // Create a new file on drive
-                using (var stream = new FileStream("files/photo.jpg",
-                           FileMode.Open))
-                {
-                    // Create a new file, with metadata and stream.
-                    request = service.Files.Insert(
-                        fileMetadata, stream, "image/jpeg");
-                    request.Fields = "id";
-                    request.Upload();
-                }
-                var file = request.ResponseBody;
-                Console.WriteLine("File ID: " + file.Id);
-                return file.Id;
+                var requestId = Guid.NewGuid().ToString();
+                var request = service.Teamdrives.Insert(teamDriveMetadata, requestId);
+                request.Fields = "id";
+                var teamDrive = request.Execute();
+                Console.WriteLine("Team Drive ID: " + teamDrive.Id);
+                return teamDrive.Id;
             }
             catch (Exception e)
             {
@@ -75,7 +66,7 @@ namespace DriveV2Snippets
                 }
                 else if (e is GoogleApiException)
                 {
-                    Console.WriteLine(" Failed With an Error {0}",e.Message);
+                    Console.WriteLine("Failed with an error {0}", e);
                 }
                 else
                 {
@@ -86,4 +77,4 @@ namespace DriveV2Snippets
         }
     }
 }
-// [END drive_upload_basic]
+// [END drive_create_team_drive]

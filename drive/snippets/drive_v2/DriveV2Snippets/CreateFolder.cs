@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START drive_create_Folder]
+// [START drive_create_folder]
 
-using System;
 using Google;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis.Drive.v2beta;
+using Google.Apis.Drive.v2;
 using Google.Apis.Services;
 
 
@@ -47,7 +46,7 @@ namespace DriveV2Snippets
                     ApplicationName = "Drive API Snippets"
                 });
                 // File metadata
-                var fileMetadata = new Google.Apis.Drive.v2beta.Data.File()
+                var fileMetadata = new Google.Apis.Drive.v2.Data.File()
                 {
                     Title = "Invoices",
                     MimeType = "application/vnd.google-apps.folder"
@@ -82,4 +81,4 @@ namespace DriveV2Snippets
     }
 
 }
-// [END drive_create_Folder]
+// [END drive_create_folder]
