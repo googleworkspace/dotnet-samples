@@ -21,14 +21,18 @@ namespace DriveV3SnippetsTest
     [TestFixture]
     public class FetchChangesTest : BaseTest
     {
+        //TODO(developer) - Provide absolute path of the file
+        private string filePath = "files/photo.jpg";
+        
         [Test]
         public void TestFetchChanges()
         {
             string startPageToken = FetchStartPageToken.DriveFetchStartPageToken();
-            CreateTestBlob();
+            var id = CreateTestBlob(filePath);
             string newStartPageToken = FetchChanges.DriveFetchChanges(startPageToken);
             Assert.IsNotNull(newStartPageToken);
             Assert.AreNotEqual(startPageToken, newStartPageToken);
+            service.Files.Delete(id);
         }
     }
 }
