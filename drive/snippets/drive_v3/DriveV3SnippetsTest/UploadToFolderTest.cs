@@ -21,6 +21,7 @@ namespace DriveV3SnippetsTest
     [TestFixture]
     public class UploadToFolderTest : BaseTest
     {
+        //TODO(developer) - Provide absolute path of the file
         private string filePath = "files/photo.jpg"; 
         
         [Test]
