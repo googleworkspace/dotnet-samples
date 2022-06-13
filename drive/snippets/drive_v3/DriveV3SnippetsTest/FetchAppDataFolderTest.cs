@@ -15,15 +15,16 @@
 using DriveV3Snippets;
 using NUnit.Framework;
 
-namespace DriveV3SnippetsTest;
-
-public class FetchAppDataFolderTest : BaseTest
+namespace DriveV3SnippetsTest
 {
     // Unit testcase for drive v3 fetch appData folder snippet
-    [Test]
-    public void TestFetchAppDataFolder()
+    public class FetchAppDataFolderTest : BaseTest
     {
-        var id = FetchAppDataFolder.DriveFetchAppDataFolder();
-        Assert.IsNotNull(id);
+        [Test]
+        public void TestFetchAppDataFolder()
+        {
+            var id = FetchAppDataFolder.DriveFetchAppDataFolder();
+            Assert.IsNotNull(id);
+        }
     }
 }
