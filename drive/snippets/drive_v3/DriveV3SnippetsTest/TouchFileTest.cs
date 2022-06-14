@@ -21,10 +21,13 @@ namespace DriveV3SnippetsTest
     [TestFixture]
     public class TouchFileTest : BaseTest
     {
+        //TODO(developer) - Provide absolute path of the file
+        private string filePath = "files/photo.jpg";
+        
         [Test]
         public void TestTouchFile()
         {
-            var id = CreateTestBlob();
+            var id = CreateTestBlob(filePath);
             var now = DateTime.Now;
             var modifiedTime = TouchFile.DriveTouchFile(id, now);
             Assert.AreEqual(now.ToString(), modifiedTime.Value.ToString());
