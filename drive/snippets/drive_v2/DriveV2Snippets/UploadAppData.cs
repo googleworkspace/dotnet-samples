@@ -30,7 +30,7 @@ namespace DriveV2Snippets
         /// </summary>
         /// <param name="filePath">File path to upload.</param>
         /// <returns>ID's of the inserted files, null otherwise.</returns>
-        public static string DriveUploadAppData()
+        public static string DriveUploadAppData(string filePath)
         {
             try
             {
