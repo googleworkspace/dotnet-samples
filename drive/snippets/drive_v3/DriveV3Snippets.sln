@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveV3Snippets", "DriveV3Snippets\DriveV3Snippets.csproj", "{CADC79A2-203D-43AB-8322-4CEA3C25946E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveV3SnippetsTest", "DriveV3SnippetsTest\DriveV3SnippetsTest.csproj", "{DBA71DCB-2607-40D8-852F-B269A7A672B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{CADC79A2-203D-43AB-8322-4CEA3C25946E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CADC79A2-203D-43AB-8322-4CEA3C25946E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CADC79A2-203D-43AB-8322-4CEA3C25946E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBA71DCB-2607-40D8-852F-B269A7A672B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBA71DCB-2607-40D8-852F-B269A7A672B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBA71DCB-2607-40D8-852F-B269A7A672B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBA71DCB-2607-40D8-852F-B269A7A672B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
