@@ -32,7 +32,7 @@ namespace DriveV3SnippetsTest
             string newStartPageToken = FetchChanges.DriveFetchChanges(startPageToken);
             Assert.IsNotNull(newStartPageToken);
             Assert.AreNotEqual(startPageToken, newStartPageToken);
-            service.Files.Delete(id);
+            DeleteFileOnCleanup(id);
         }
     }
 }
