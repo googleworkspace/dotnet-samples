@@ -32,6 +32,7 @@ namespace DriveV3SnippetsTest
                 "user@test.appsdevtesting.com",
                 "test.appsdevtesting.com");
             Assert.AreNotEqual(0, ids.Count);
+            DeleteFileOnCleanup(fileId);
         }
     }
 }

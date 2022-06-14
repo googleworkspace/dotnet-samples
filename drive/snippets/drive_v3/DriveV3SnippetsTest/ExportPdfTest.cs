@@ -34,6 +34,7 @@ namespace DriveV3SnippetsTest
             var content = Encoding.UTF8.GetString(fileStream.ToArray());
             Assert.AreNotEqual(0, content.Length);
             Assert.AreEqual("%PDF", content.Substring(0, 4));
+            DeleteFileOnCleanup(id);            
         }
     }
 }

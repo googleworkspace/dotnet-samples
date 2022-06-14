@@ -31,6 +31,7 @@ namespace DriveV3SnippetsTest
             var now = DateTime.Now;
             var modifiedTime = TouchFile.DriveTouchFile(id, now);
             Assert.AreEqual(now.ToString(), modifiedTime.Value.ToString());
+            DeleteFileOnCleanup(id);
         }
     }
 }

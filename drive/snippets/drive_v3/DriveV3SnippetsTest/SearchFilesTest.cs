@@ -28,9 +28,10 @@ namespace DriveV3SnippetsTest
         [Test]
         public void TestSearchFiles()
         {
-            CreateTestBlob(filePath);
+            var id = CreateTestBlob(filePath);
             var files = SearchFiles.DriveSearchFiles();
             Assert.AreNotEqual(0, files.Count);
+            DeleteFileOnCleanup(id);
         }
     }
 }

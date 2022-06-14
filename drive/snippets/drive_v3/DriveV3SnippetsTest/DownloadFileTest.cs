@@ -33,6 +33,7 @@ namespace DriveV3SnippetsTest
             Assert.AreNotEqual(0, content.Length);
             Assert.AreEqual(0xFF, content[0]);
             Assert.AreEqual(0XD8, content[1]);
+            DeleteFileOnCleanup(id);
         }
     }
 }
