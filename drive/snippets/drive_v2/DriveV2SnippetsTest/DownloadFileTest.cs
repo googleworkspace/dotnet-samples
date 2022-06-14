@@ -15,20 +15,23 @@
 using DriveV2Snippets;
 using NUnit.Framework;
 
-
 namespace DriveV2SnippetsTest
 {
-  // Unit testcase for drive v2 create drive snippet
+  // Unit testcase for drive v2 download file snippet
   [TestFixture]
-  public class CreateDriveTest : BaseTest
+  public class DownloadFileTest : BaseTest
   {
-
+    // TODO(developer) - Provide Absolute path of file.
+    private string filePath = "files/photo.jpg"; 
     [Test]
-    public void TestCreateDrive()
+    public void TestDownloadFile()
     {
-      var id = CreateDrive.DriveCreateDrive();
-      Assert.IsNotNull(id);
-      DeleteFileOnCleanup(id);
+      var id = CreateTestBlob(filePath);
+      var fileStream = DownloadFile.DriveDownloadFile(id);
+      var content = fileStream.GetBuffer();
+      Assert.AreNotEqual(0, content.Length);
+      Assert.AreEqual(0xFF, content[0]);
+      Assert.AreEqual(0XD8, content[1]);
     }
   }
 }

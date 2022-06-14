@@ -12,23 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Text;
 using DriveV2Snippets;
 using NUnit.Framework;
 
-
 namespace DriveV2SnippetsTest
 {
-  // Unit testcase for drive v2 create drive snippet
-  [TestFixture]
-  public class CreateDriveTest : BaseTest
-  {
 
+  // Unit testcase for drive v2 export pdf snippet
+  [TestFixture]
+  public class ExportPdfTest : BaseTest
+  {
+    // TODO(developer) - Provide Absolute path of file.
+    private string filePath = "files/document.txt";
     [Test]
-    public void TestCreateDrive()
+    public void TestExportPdf()
     {
-      var id = CreateDrive.DriveCreateDrive();
-      Assert.IsNotNull(id);
-      DeleteFileOnCleanup(id);
+      var id = CreateTestDocument(filePath);
+      var fileStream = ExportPdf.DriveExportPdf(id);
+      var content = Encoding.UTF8.GetString(fileStream.ToArray());
+      Assert.AreNotEqual(0, content.Length);
+      Assert.AreEqual("%PDF", content.Substring(0, 4));
     }
   }
 }

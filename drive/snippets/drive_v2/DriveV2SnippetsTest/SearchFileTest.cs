@@ -15,20 +15,18 @@
 using DriveV2Snippets;
 using NUnit.Framework;
 
-
 namespace DriveV2SnippetsTest
 {
-  // Unit testcase for drive v2 create drive snippet
-  [TestFixture]
-  public class CreateDriveTest : BaseTest
-  {
 
+  // Unit testcase for drive v2 search files snippet
+  [TestFixture]
+  public class SearchFilesTest : BaseTest
+  {
     [Test]
-    public void TestCreateDrive()
+    public void TestSearchFiles()
     {
-      var id = CreateDrive.DriveCreateDrive();
-      Assert.IsNotNull(id);
-      DeleteFileOnCleanup(id);
+      var files = SearchFiles.DriveSearchFiles();
+      Assert.AreNotEqual(0, files.Count);
     }
   }
 }

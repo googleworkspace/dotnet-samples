@@ -15,18 +15,16 @@
 using DriveV2Snippets;
 using NUnit.Framework;
 
-
 namespace DriveV2SnippetsTest
 {
-  // Unit testcase for drive v2 create drive snippet
+  // Unit testcase for drive v2 create shortcut snippet
   [TestFixture]
-  public class CreateDriveTest : BaseTest
+  public class CreateShortcutTest : BaseTest
   {
-
     [Test]
-    public void TestCreateDrive()
+    public void TestCreateShortcut()
     {
-      var id = CreateDrive.DriveCreateDrive();
+      var id = CreateShortcut.DriveCreateShortcut();
       Assert.IsNotNull(id);
       DeleteFileOnCleanup(id);
     }

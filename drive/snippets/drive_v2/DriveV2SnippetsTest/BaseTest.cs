@@ -82,12 +82,12 @@ namespace DriveV2SnippetsTest
             filesToDelete.Add(id);
         }
 
-        protected string CreateTestDocument()
+        protected string CreateTestDocument(string filePath)
         {
             var fileMetadata = new Google.Apis.Drive.v2.Data.File();
             fileMetadata.Title = "Test Document";
             fileMetadata.MimeType = "application/vnd.google-apps.document";
-            using (var stream = new System.IO.FileStream("files/document.txt",
+            using (var stream = new System.IO.FileStream(filePath,
                 System.IO.FileMode.Open))
             {
                 var request = this.service.Files.Insert(
@@ -107,11 +107,11 @@ namespace DriveV2SnippetsTest
             }
         }
 
-        protected string CreateTestBlob()
+        protected string CreateTestBlob(string filePath)
         {
             var fileMetadata = new Google.Apis.Drive.v2.Data.File();
             fileMetadata.Title = "photo.jpg";
-            using (var stream = new System.IO.FileStream("files/photo.jpg",
+            using (var stream = new System.IO.FileStream(filePath,
                 System.IO.FileMode.Open))
             {
                 var request = this.service.Files.Insert(

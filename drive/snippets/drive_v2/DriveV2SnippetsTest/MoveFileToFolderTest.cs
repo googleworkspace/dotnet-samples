@@ -15,20 +15,24 @@
 using DriveV2Snippets;
 using NUnit.Framework;
 
-
 namespace DriveV2SnippetsTest
 {
-  // Unit testcase for drive v2 create drive snippet
+  // Unit testcase for drive v2 move file to folder snippet
   [TestFixture]
-  public class CreateDriveTest : BaseTest
+  public class MoveFileToFolderTest : BaseTest
   {
-
+    // TODO(developer) - Provide Absolute path of file.
+    private string filePath = "files/document.txt";
     [Test]
-    public void TestCreateDrive()
+    public void TestMoveFileToFolder()
     {
-      var id = CreateDrive.DriveCreateDrive();
-      Assert.IsNotNull(id);
-      DeleteFileOnCleanup(id);
+      var fileId = CreateTestBlob(filePath);
+      var folderId = CreateFolder.DriveCreateFolder();
+      IList<string> parents = MoveFileToFolder.DriveMoveFileToFolder(
+        fileId, folderId);
+      Assert.IsTrue(parents.Contains(folderId));
+      Assert.AreEqual(1, parents.Count);
+      DeleteFileOnCleanup(folderId);
     }
   }
 }

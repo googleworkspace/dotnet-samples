@@ -15,20 +15,21 @@
 using DriveV2Snippets;
 using NUnit.Framework;
 
-
 namespace DriveV2SnippetsTest
 {
-  // Unit testcase for drive v2 create drive snippet
+  // Unit testcase for drive v3 touch file snippet
   [TestFixture]
-  public class CreateDriveTest : BaseTest
+  public class TouchFileTest : BaseTest
   {
-
+    // TODO(developer) - Provide Absolute path of file.
+    private string filePath = "files/document.txt";
     [Test]
-    public void TestCreateDrive()
+    public void TestTouchFile()
     {
-      var id = CreateDrive.DriveCreateDrive();
-      Assert.IsNotNull(id);
-      DeleteFileOnCleanup(id);
+      var id = CreateTestBlob(filePath);
+      var now = DateTime.Now;
+      var modifiedTime = TouchFile.DriveTouchFile(id, now);
+      Assert.AreEqual(now.ToString(), modifiedTime.Value.ToString());
     }
   }
 }
