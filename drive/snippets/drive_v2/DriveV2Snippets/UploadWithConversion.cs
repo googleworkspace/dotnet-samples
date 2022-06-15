@@ -25,12 +25,12 @@ namespace DriveV2Snippets
     // Class to demonstrate Drive's upload with conversion use-case.
     public class UploadWithConversion
     {
-        
         /// <summary>
         /// Upload file with conversion.
         /// </summary>
+        /// <param name="filePath"></param>
         /// <returns>Inserted file id if successful, null otherwise.</returns>
-        public static string DriveUploadWithConversion()
+        public static string DriveUploadWithConversion(string filePath)
         {
             try
             {
