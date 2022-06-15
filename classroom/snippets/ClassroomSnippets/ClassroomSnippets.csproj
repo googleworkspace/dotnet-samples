@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
+        <OutputType>Library</OutputType>
+        <IsPackable>false</IsPackable>
+        <TestProjectType>UnitTest</TestProjectType>
         <ImplicitUsings>enable</ImplicitUsings>
        
     </PropertyGroup>
