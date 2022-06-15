@@ -21,10 +21,13 @@ namespace DriveV3SnippetsTest
     [TestFixture]
     public class MoveFileToFolderTest : BaseTest
     {
+        //TODO(developer) - Provide absolute path of the file
+        private string filePath = "files/photo.jpg";
+        
         [Test]
         public void TestMoveFileToFolder()
         {
-            var fileId = CreateTestBlob();
+            var fileId = CreateTestBlob(filePath);
             var folderId = CreateFolder.DriveCreateFolder();
             IList<string> parents = MoveFileToFolder.DriveMoveFileToFolder(
                 fileId, folderId);

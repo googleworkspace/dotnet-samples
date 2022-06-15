@@ -23,14 +23,18 @@ namespace DriveV3SnippetsTest
     [TestFixture]
     public class ExportPdfTest : BaseTest
     {
+        //TODO(developer) - Provide absolute path of the file
+        private string filePath = "files/document.txt";
+        
         [Test]
-         public void TestExportPdf()
-         {
-             var id = CreateTestDocument();
-             var fileStream = ExportPdf.DriveExportPdf(id);
-             var content = Encoding.UTF8.GetString(fileStream.ToArray());
-             Assert.AreNotEqual(0, content.Length);
-             Assert.AreEqual("%PDF", content.Substring(0, 4));
-         }
+        public void TestExportPdf()
+        {
+            var id = CreateTestDocument(filePath);
+            var fileStream = ExportPdf.DriveExportPdf(id);
+            var content = Encoding.UTF8.GetString(fileStream.ToArray());
+            Assert.AreNotEqual(0, content.Length);
+            Assert.AreEqual("%PDF", content.Substring(0, 4));
+            DeleteFileOnCleanup(id);            
+        }
     }
 }

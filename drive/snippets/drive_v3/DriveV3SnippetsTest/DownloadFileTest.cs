@@ -21,15 +21,19 @@ namespace DriveV3SnippetsTest
     [TestFixture]
     public class DownloadFileTest : BaseTest
     {
+        //TODO(developer) - Provide absolute path of the file
+        private string filePath = "files/photo.jpg";
+        
         [Test]
         public void TestDownloadFile()
         {
-            var id = CreateTestBlob();
+            var id = CreateTestBlob(filePath);
             var fileStream = DownloadFile.DriveDownloadFile(id);
             var content = fileStream.GetBuffer();
             Assert.AreNotEqual(0, content.Length);
             Assert.AreEqual(0xFF, content[0]);
             Assert.AreEqual(0XD8, content[1]);
+            DeleteFileOnCleanup(id);
         }
     }
 }

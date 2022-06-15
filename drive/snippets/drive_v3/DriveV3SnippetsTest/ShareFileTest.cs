@@ -21,14 +21,18 @@ namespace DriveV3SnippetsTest
     [TestFixture]
     public class ShareFileTest : BaseTest
     {
+        //TODO(developer) - Provide absolute path of the file
+        private string filePath = "files/photo.jpg";
+        
         [Test]
         public void TestShareFile()
         {
-            String fileId = CreateTestBlob();
+            String fileId = CreateTestBlob(filePath);
             var ids = ShareFile.DriveShareFile(fileId,
                 "user@test.appsdevtesting.com",
                 "test.appsdevtesting.com");
             Assert.AreNotEqual(0, ids.Count);
+            DeleteFileOnCleanup(fileId);
         }
     }
 }

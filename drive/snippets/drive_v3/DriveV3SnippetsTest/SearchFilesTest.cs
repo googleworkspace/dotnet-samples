@@ -22,12 +22,16 @@ namespace DriveV3SnippetsTest
     [TestFixture]
     public class SearchFilesTest : BaseTest
     {
+        //TODO(developer) - Provide absolute path of the file
+        private string filePath = "files/photo.jpg";
+        
         [Test]
         public void TestSearchFiles()
         {
-            CreateTestBlob();
+            var id = CreateTestBlob(filePath);
             var files = SearchFiles.DriveSearchFiles();
             Assert.AreNotEqual(0, files.Count);
+            DeleteFileOnCleanup(id);
         }
     }
 }
