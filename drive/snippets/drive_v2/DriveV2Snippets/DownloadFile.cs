@@ -30,7 +30,7 @@ namespace DriveV2Snippets
         /// </summary>
         /// <param name="fileId">file ID of any workspace document format file.</param>
         /// <returns>byte array stream if successful, null otherwise.</returns>
-        public MemoryStream DriveDownloadFile(string fileId)
+        public static MemoryStream DriveDownloadFile(string fileId)
         {
             try
             {
