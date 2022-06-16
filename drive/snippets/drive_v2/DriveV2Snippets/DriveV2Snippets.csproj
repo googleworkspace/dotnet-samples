@@ -1,15 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <OutputType>Library</OutputType>
+        <IsPackable>false</IsPackable>
 
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Google.Apis.Auth" Version="1.57.0" />
-      <PackageReference Include="Google.Apis.Drive.v2" Version="1.57.0.2663" />
+      <PackageReference Include="Google.Apis.Drive.v2" Version="1.57.0.2684" />
     </ItemGroup>
+    
 
 </Project>
