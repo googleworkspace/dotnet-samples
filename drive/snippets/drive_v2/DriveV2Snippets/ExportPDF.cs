@@ -30,7 +30,7 @@ namespace DriveV2Snippets
         /// </summary>
         /// <param name="fileId">Id of the file.</param>
         /// <returns>Byte array stream if successful, null otherwise</returns>
-        public MemoryStream DriveExportPdf(string fileId)
+        public static MemoryStream DriveExportPdf(string fileId)
         {
             try
             {

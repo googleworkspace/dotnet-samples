@@ -13,13 +13,14 @@
 // limitations under the License.
 
 // [START classroom_list_aliases]
+
+using System;
+using System.Collections.Generic;
 using Google;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Classroom.v1;
 using Google.Apis.Classroom.v1.Data;
 using Google.Apis.Services;
-using System;
-using System.Collections.Generic;
 
 namespace ClassroomSnippets
 {
@@ -62,11 +63,17 @@ namespace ClassroomSnippets
                     pageToken = response.NextPageToken;
                 } while (pageToken != null);
 
-                Console.WriteLine("Aliases:");
-                foreach (var courseAlias in courseAliases)
+                if (courseAliases.Count == 0)
                 {
-                    // Print the aliases in a course.
-                    Console.WriteLine(courseAlias.Alias);
+                    Console.WriteLine("No aliases found.");
+                }
+                else
+                {
+                    Console.WriteLine("Aliases:");
+                    foreach (var courseAlias in courseAliases)
+                    {
+                        Console.WriteLine(courseAlias.Alias);
+                    }
                 }
                 return courseAliases;
             }
@@ -81,10 +88,7 @@ namespace ClassroomSnippets
                 {
                     Console.WriteLine("Course does not exist.");
                 }
-                else if (e is ArgumentNullException)
-                {
-                    Console.WriteLine("No aliases found.");
-                }
+              
                 else
                 {
                     throw;

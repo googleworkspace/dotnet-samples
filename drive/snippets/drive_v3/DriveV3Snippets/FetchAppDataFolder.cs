@@ -26,7 +26,7 @@ namespace DriveV3Snippets
         /// List out application data folder and prints folder ID.
         /// </summary>
         /// <returns>application data folder's ID, null otherwise.</returns>
-        public string DriveFetchAppDataFolder()
+        public static string DriveFetchAppDataFolder()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace DriveV3Snippets
                  TODO(developer) - See https://developers.google.com/identity for
                  guides on implementing OAuth2 for your application. */
                 GoogleCredential credential = GoogleCredential.GetApplicationDefault()
-                    .CreateScoped(DriveService.Scope.Drive);
+                    .CreateScoped(DriveService.Scope.DriveAppdata);
 
                 // Create Drive API service.
                 var service = new DriveService(new BaseClientService.Initializer

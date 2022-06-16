@@ -1,17 +1,12 @@
-﻿using System;
 using Google.Apis.Auth.OAuth2;
-using Google.Apis.Drive.v3beta;
-using Google.Apis.Drive.v3beta.Data;
+using Google.Apis.Drive.v2;
+using Google.Apis.Drive.v2.Data;
+using Google.Apis.Http;
 using Google.Apis.Services;
 using NUnit.Framework;
-using Google;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Threading;
-using Google.Apis.Http;
-using System.Collections.Generic;
 
-namespace dotnet
+
+namespace DriveV2SnippetsTest
 {
 
     class ErrorHandler : IHttpUnsuccessfulResponseHandler
@@ -30,11 +25,7 @@ namespace dotnet
         protected DriveService service;
         protected HashSet<string> filesToDelete = new HashSet<string>();
 
-        static BaseTest()
-        {
-            ApplicationContext.RegisterLogger(
-                new Google.Apis.Logging.Log4NetLogger());
-        }
+    
 
         public BaseTest()
         {
@@ -53,8 +44,8 @@ namespace dotnet
             {
                 var scopes = new[]
                 {
-                  DriveService.Scope.Drive,
-                  DriveService.Scope.DriveAppdata
+                    DriveService.Scope.Drive,
+                    DriveService.Scope.DriveAppdata
                 };
                 credential = credential.CreateScoped(scopes);
             }
@@ -91,15 +82,15 @@ namespace dotnet
             filesToDelete.Add(id);
         }
 
-        protected string CreateTestDocument()
+        protected string CreateTestDocument(string filePath)
         {
-            var fileMetadata = new File();
-            fileMetadata.Name = "Test Document";
+            var fileMetadata = new Google.Apis.Drive.v2.Data.File();
+            fileMetadata.Title = "Test Document";
             fileMetadata.MimeType = "application/vnd.google-apps.document";
-            using (var stream = new System.IO.FileStream("files/document.txt",
+            using (var stream = new System.IO.FileStream(filePath,
                 System.IO.FileMode.Open))
             {
-                var request = this.service.Files.Create(
+                var request = this.service.Files.Insert(
                       fileMetadata, stream, "text/plain");
                 request.Fields = "id, mimeType";
                 request.Upload();
@@ -116,14 +107,14 @@ namespace dotnet
             }
         }
 
-        protected string CreateTestBlob()
+        protected string CreateTestBlob(string filePath)
         {
-            var fileMetadata = new File();
-            fileMetadata.Name = "photo.jpg";
-            using (var stream = new System.IO.FileStream("files/photo.jpg",
+            var fileMetadata = new Google.Apis.Drive.v2.Data.File();
+            fileMetadata.Title = "photo.jpg";
+            using (var stream = new System.IO.FileStream(filePath,
                 System.IO.FileMode.Open))
             {
-                var request = this.service.Files.Create(
+                var request = this.service.Files.Insert(
                       fileMetadata, stream, "image/jpeg");
                 request.Fields = "id";
                 request.Upload();
