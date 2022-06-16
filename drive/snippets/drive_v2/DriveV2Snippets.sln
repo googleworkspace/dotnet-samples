@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveV2Snippets", "DriveV2Snippets\DriveV2Snippets.csproj", "{87935833-1FE2-4D38-AA68-62318C6FAEF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveV2SnippetsTest", "DriveV2SnippetsTest\DriveV2SnippetsTest.csproj", "{39BA1721-ECD4-4432-9818-491F4E3D935B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{87935833-1FE2-4D38-AA68-62318C6FAEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87935833-1FE2-4D38-AA68-62318C6FAEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87935833-1FE2-4D38-AA68-62318C6FAEF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39BA1721-ECD4-4432-9818-491F4E3D935B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39BA1721-ECD4-4432-9818-491F4E3D935B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39BA1721-ECD4-4432-9818-491F4E3D935B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39BA1721-ECD4-4432-9818-491F4E3D935B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

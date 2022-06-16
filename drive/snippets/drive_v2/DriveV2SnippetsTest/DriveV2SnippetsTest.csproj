@@ -2,22 +2,23 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
         <OutputType>Library</OutputType>
         <IsPackable>false</IsPackable>
         <TestProjectType>UnitTest</TestProjectType>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Google.Apis.Auth" Version="1.57.0" />
-        <PackageReference Include="Google.Apis.Classroom.v1" Version="1.57.0.2639" />
+        <PackageReference Include="Google.Apis.Drive.v2" Version="1.57.0.2663" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
-        <PackageReference Include="NUnit" Version="3.13.3" />
+        <PackageReference Include="NUnit" Version="3.13.2" />
         <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
         <PackageReference Include="coverlet.collector" Version="3.1.2" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ClassroomSnippets\ClassroomSnippets.csproj" />
+      <ProjectReference Include="..\DriveV2Snippets\DriveV2Snippets.csproj" />
     </ItemGroup>
 
 </Project>
