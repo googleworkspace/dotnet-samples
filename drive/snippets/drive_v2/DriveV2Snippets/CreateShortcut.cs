@@ -28,7 +28,7 @@ namespace DriveV2Snippets
         /// Create a third party shortcut.
         /// </summary>
         /// <returns>newly created shortcut file id, null otherwise.</returns>
-        public string DriveCreateShortcut()
+        public static string DriveCreateShortcut()
         {
             try
             {
