@@ -10,7 +10,7 @@ public class BaseTest
 {
   protected ClassroomService Service;
   protected Course TestCourse;
-  protected string OtherUser = "rajesh@workspacesamples.dev";
+  protected string OtherUser = "gduser1@workspacesamples.dev";
 
   [SetUp]
   public void SetUp()
@@ -19,13 +19,6 @@ public class BaseTest
     this.TestCourse = CreateTestCourse("me");
     
   }
-
-  [TearDown]
-   public void TearDown()
-   {
-     DeleteCourse(this.TestCourse.Id);
-     this.TestCourse = null;
-   }
   
   protected ClassroomService getService()
   {
