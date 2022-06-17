@@ -30,7 +30,7 @@ namespace DriveV2Snippets
         /// </summary>
         /// <param name="filePath">File path to upload.</param>
         /// <returns>ID's of the inserted files, null otherwise.</returns>
-        public static string DriveUploadAppData()
+        public static string DriveUploadAppData(string filePath)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace DriveV2Snippets
                     }
                 };
                 FilesResource.InsertMediaUpload request;
-                using (var stream = new FileStream("files/config.json",
+                using (var stream = new FileStream(filePath,
                            FileMode.Open))
                 {
                     request = service.Files.Insert(
