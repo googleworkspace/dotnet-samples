@@ -56,7 +56,7 @@ namespace DriveV2Snippets
                     }
                 };
                 FilesResource.InsertMediaUpload request;
-                using (var stream = new FileStream("files/config.json",
+                using (var stream = new FileStream(filePath,
                            FileMode.Open))
                 {
                     request = service.Files.Insert(
