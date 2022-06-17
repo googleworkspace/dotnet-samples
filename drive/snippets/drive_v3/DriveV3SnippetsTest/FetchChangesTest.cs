@@ -12,20 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using DriveV2Snippets;
+using DriveV3Snippets;
 using NUnit.Framework;
 
-namespace DriveV2SnippetsTest
+namespace DriveV3SnippetsTest
 {
-    // Unit testcase for drive v2 create Drive snippet
+    // Unit testcase for drive v3 fetch changes snippet
     [TestFixture]
-    public class CreateDriveTest : BaseTest
+    public class FetchChangesTest : BaseTest
     {
+        //TODO(developer) - Provide absolute path of the file
+        private string filePath = "files/photo.jpg";
+        
         [Test]
-        public void TestCreateDrive()
+        public void TestFetchChanges()
         {
-            var id = CreateDrive.DriveCreateDrive();
-            Assert.IsNotNull(id);
+            string startPageToken = FetchStartPageToken.DriveFetchStartPageToken();
+            var id = CreateTestBlob(filePath);
+            string newStartPageToken = FetchChanges.DriveFetchChanges(startPageToken);
+            Assert.IsNotNull(newStartPageToken);
+            Assert.AreNotEqual(startPageToken, newStartPageToken);
             DeleteFileOnCleanup(id);
         }
     }

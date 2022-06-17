@@ -12,18 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using DriveV3Snippets;
 using NUnit.Framework;
-using ClassroomSnippets;
 
-namespace ClassroomSnippetsTest;
-
-public class PatchCourseTest : BaseTest
+namespace DriveV3SnippetsTest
 {
-  [Test]
-  public void TestPatchCourse()
-  {
-    var course = PatchUpdate.ClassroomPatchUpdate(this.TestCourse.Id);
-    Assert.IsNotNull(course, "Course not returned.");
-    Assert.AreEqual(this.TestCourse.Id, course.Id, "Wrong course returned.");
-  }
+    // Unit testcase for drive v3 create team drive snippet
+    [TestFixture]
+    public class CreateTeamDriveTest : BaseTest
+    {
+        [Test]
+        public void TestCreateTeamDrive()
+        {
+            var id = CreateTeamDrive.DriveCreateTeamDrive();
+            Assert.IsNotNull(id);
+            service.Teamdrives.Delete(id).Execute();
+        }
+    }
 }
