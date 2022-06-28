@@ -53,7 +53,7 @@ namespace DriveV2Snippets
                 };
                 FilesResource.InsertMediaUpload request;
                 // Create a new file on drive
-                using (var stream = new FileStream("files/photo.jpg",
+                using (var stream = new FileStream(filePath,
                            FileMode.Open))
                 {
                     // Create a new file, with metadata and stream.
