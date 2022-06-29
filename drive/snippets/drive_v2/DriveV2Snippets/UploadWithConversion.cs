@@ -25,12 +25,12 @@ namespace DriveV2Snippets
     // Class to demonstrate Drive's upload with conversion use-case.
     public class UploadWithConversion
     {
-        
         /// <summary>
         /// Upload file with conversion.
         /// </summary>
+        /// <param name="filePath"></param>
         /// <returns>Inserted file id if successful, null otherwise.</returns>
-        public static string DriveUploadWithConversion()
+        public static string DriveUploadWithConversion(string filePath)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace DriveV2Snippets
                     MimeType = "application/vnd.google-apps.spreadsheet"
                 };
                 FilesResource.InsertMediaUpload request;
-                using (var stream = new FileStream("files/report.csv",
+                using (var stream = new FileStream(filePath,
                            FileMode.Open))
                 {
                     // Create a new file, with metadata and stream.
