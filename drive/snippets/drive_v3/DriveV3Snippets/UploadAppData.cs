@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START drive_upload_app_data]
+// [START drive_upload_appdata]
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
@@ -82,4 +82,4 @@ namespace DriveV3Snippets
         }
     }
 }
-// [END drive_upload_app_data]
+// [END drive_upload_appdata]

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// [START drive_fetch_app_data_folder]
+// [START drive_fetch_appdata_folder]
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
@@ -66,4 +66,4 @@ namespace DriveV3Snippets
         }
     }
 }
-// [END drive_fetch_app_data_folder]
+// [END drive_fetch_appdata_folder]
